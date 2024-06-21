@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wine Classification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 15px;
+            background-image: url('https://miro.medium.com/v2/resize:fit:720/format:webp/0*OGDB-JY7IDYQE48U.jpg');
+            background-size: cover;
+            background-position: center;
+            color: black;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            margin-top: -10px;
+            color: rgb(0, 132, 180);
+            font-family: Segoe Print;
+            text-shadow: 
+            -1px -1px 0 black,  
+            1px -1px 0 black,
+            -1px  1px 0 black,
+            1px  1px 0 black;
+        }
+        h3 {
+            text-align: center;
+            margin-bottom: 0px;
+            margin-top: 0px;
+            color: rgb(11, 120, 157);
+            font-family: Segoe Print;
+        }
+        p {
+            text-align: center;
+            margin-bottom: 15px;
+            margin-top: 5px;
+        }
+        form {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(195, 178, 178, 0.5);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+        }
+        .form-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-shadow: 
+            -1px -1px 0 white,  
+            1px -1px 0 white,
+            -1px  1px 0 white,
+            1px  1px 0 white;
+        }
+        input[type="text"] {
+            width: calc(100% - 12px);
+            padding: 6px;
+            border: 1px solid red;
+            border-radius: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            font-size: 14px;
+        }
+        input[type="text"]:hover {
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.9);
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 1);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            font-family: Segoe Print;
+            text-shadow: 
+            -1px -1px 0 black,  
+            1px -1px 0 black,
+            -1px  1px 0 black,
+            1px  1px 0 black;
+        }
+        input[type="submit"]:hover {
+            background-color: #235725;
+        }
+        .result {
+            margin-top: 10px;
+            width: 82%;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: rgba(240, 240, 240, 0.9);
+            color: black;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+        }
+    </style>
+</head>
+<body>
+    <form method="post" action="/">
+        <h1>Wine Classification Model Gaussian Naive Bayes</h1>
+        <div class="form-group">
+            <div>
+                <label for="alcohol">Alcohol:</label>
+                <input type="text" id="alcohol" name="alcohol" placeholder="Input Persentase alkohol dalam wine....." required>
+            </div>
+            <div>
+                <label for="malic_acid">Malic Acid:</label>
+                <input type="text" id="malic_acid" name="malic_acid" placeholder="Input Konsentrasi asam malat....." required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label for="ash">Ash:</label>
+                <input type="text" id="ash" name="ash" placeholder="Input Jumlah abu setelah pembakaran....." required>
+            </div>
+            <div>
+                <label for="alcalinity_of_ash">Alcalinity of Ash:</label>
+                <input type="text" id="alcalinity_of_ash" name="alcalinity_of_ash" placeholder="Input Tingkat kealkalian abu....." required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label for="magnesium">Magnesium:</label>
+                <input type="text" id="magnesium" name="magnesium" placeholder="Input Kandungan magnesium....." required>
+            </div>
+            <div>
+                <label for="total_phenols">Total Phenols:</label>
+                <input type="text" id="total_phenols" name="total_phenols" placeholder="Input Jumlah fenol total....." required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label for="flavanoids">Flavanoids:</label>
+                <input type="text" id="flavanoids" name="flavanoids" placeholder="Input Kandungan flavonoid....." required>
+            </div>
+            <div>
+                <label for="nonflavanoid_phenols">Nonflavanoid Phenols:</label>
+                <input type="text" id="nonflavanoid_phenols" name="nonflavanoid_phenols" placeholder="Input Jumlah fenol nonflavonoid....." required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label for="proanthocyanins">Proanthocyanins:</label>
+                <input type="text" id="proanthocyanins" name="proanthocyanins" placeholder="Input Kandungan proantosianidin....." required>
+            </div>
+            <div>
+                <label for="color_intensity">Color Intensity:</label>
+                <input type="text" id="color_intensity" name="color_intensity" placeholder="Input Intensitas warna....." required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label for="hue">Hue:</label>
+                <input type="text" id="hue" name="hue" placeholder="Input Rona warna....." required>
+            </div>
+            <div>
+                <label for="od280_od315">OD280/OD315 of Diluted Wines:</label>
+                <input type="text" id="od280_od315" name="od280_od315" placeholder="Input Rasio penyerapan UV untuk mengukur fenol....." required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div>
+                <label for="proline">Proline:</label>
+                <input type="text" id="proline" name="proline" placeholder=" Input Kandungan asam amino proline....." required>
+            </div>
+        </div>
+        <input type="submit" value="Predict">
+    </form>
+
+    {% if predicted_class %}
+    <div class="result">
+        <h3>Hasil Prediksi:</h3>
+        <p>Class Varietas Wine Prediksi untuk data tersebut masuk kategorikal Class: <strong>{{ predicted_class }}</strong></p>
+    </div>
+    {% endif %}
+
+    {% if error_message %}
+    <div class="result" style="background-color: rgba(176, 18, 18, 0.9);">
+        <h3>Pesan Kesalahan:</h3>
+        <p>{{ error_message }}</p>
+    </div>
+    {% endif %}
+</body>
+</html>
