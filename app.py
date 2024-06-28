@@ -13,21 +13,21 @@ if not os.path.exists(MODEL_PATH):
     X = data_wine.drop(columns=['class'])
     y = data_wine['class']
 
-    # Initialize Gaussian Naive Bayes model and train it
+    # Inisiasi Model Gaussian Naive Bayes dan data train 
     gnb_model = GaussianNB()
     gnb_model.fit(X, y)
 
-    # Save the model
+    # Save Model
     with open(MODEL_PATH, 'wb') as f:
         pickle.dump(gnb_model, f)
 
     # Output to confirm training completion
-    print("Model saved.")
+    print("Model Tersimpan.")
 else:
     # Load the model
     with open(MODEL_PATH, 'rb') as f:
         gnb_model = pickle.load(f)
-    print("Model has been loaded from disk.")
+    print("Model Sudah Tersimpan.")
 
 
 @app.route('/', methods=['GET', 'POST'])
