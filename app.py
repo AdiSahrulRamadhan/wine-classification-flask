@@ -72,6 +72,14 @@ def index():
             predicted_class = gnb_model.predict(new_data_point)[0]
         except ValueError:
             error_message = "Invalid input: Please enter valid numbers."
+        except Exception as e:
+            error_message = f"An error occured: {str(e)}"
+        if predicted_class == 1:
+            predicted_class = "[1] Varietas pertama: dalam dataset ini menonjol dengan kandungan alkohol yang lebih tinggi serta jumlah fenol dan flavonoid yang signifikan. Wine dari varietas ini cenderung memiliki rasa yang kuat dan kompleks, dengan aroma yang kaya dan tekstur yang mendalam. Kandungan fenol yang tinggi memberikan wine warna yang lebih dalam dan tajam, sementara alkohol yang lebih tinggi memberikan kesan struktural yang kuat. Perbedaan ini menunjukkan bahwa varietas pertama ini sering kali dianggap sebagai yang paling berani dan penuh karakter di antara ketiga varietas, dengan ciri khas yang mendalam dan berlapis-lapis dalam setiap tegukan."
+        elif predicted_class == 2:
+            predicted_class = "[2] Varietas kedua: ditandai dengan tingkat keasaman yang lebih tinggi, karena konsentrasi malic acid yang signifikan. Wine dari varietas ini biasanya lebih segar dengan rasa yang tajam dan menyegarkan. Meskipun memiliki kandungan fenol yang sedikit lebih rendah dibandingkan varietas pertama, varietas kedua tetap memberikan kompleksitas yang menarik, dengan nuansa buah yang lebih cerah dan keasaman yang seimbang."
+        else:
+            predicted_class = "[3] Varietas ketiga: menonjol dengan kandungan mineral seperti magnesium dan proline yang lebih tinggi. Hal ini menciptakan wine dengan aroma yang lebih kompleks dan rasa yang lebih halus serta seimbang. Wine dari varietas ini sering kali memiliki karakteristik aroma yang unik, dengan sentuhan mineral dan buah yang terintegrasi secara elegan. Perbedaan ini menunjukkan bahwa varietas ketiga menawarkan pengalaman sensorik yang berbeda, dengan fokus pada keseimbangan dan kompleksitas rasa yang menyeluruh."
 
     return render_template('index.html', predicted_class=predicted_class, input_data=input_data, error_message=error_message)
 
